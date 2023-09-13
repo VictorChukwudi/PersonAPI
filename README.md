@@ -64,6 +64,20 @@ The Person API has the routes(endpoints) available for the api usage:
 - **PUT** /api/user_id : to update an existing person details using the user_id.
 - **DELETE** /api/user_id : to delete an existing person details using the user_id.
 
+The routes are appended to the base URL with is
+
+- for local
+
+```
+http://localhost:4000
+```
+
+- for deployed
+
+```
+https://personapi-xc6z.onrender.com
+```
+
 ### Deployed
 
 To use the deployed version of the API, the base URL is https://personapi-xc6z.onrender.com (with the routes attached for any of the CRUD operations)
