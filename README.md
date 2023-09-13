@@ -29,7 +29,7 @@ The node modules used for this API are
 
 ## Setup
 
-To run this project (i.e. locally),
+To run this project (i.e. locally), mongodb should be available on your machine or use mongodb Atlas
 
 - Clone the repo:
 
@@ -41,6 +41,12 @@ $ git clone https://github.com/VictorChukwudi/hng_stage_two.git
 
 ```
 $ npm install
+```
+
+- Create a .env file in the root and add code below to the file
+
+```
+dbURI= <mongodb_connection_string>
 ```
 
 - Next, run the command below to start the server
@@ -60,4 +66,4 @@ The Person API has the routes(endpoints) available for the api usage:
 
 ### Deployed
 
-To use the deployed version of the API, the base URL is https://personapi.onrender.com.(with the routes attached for any of the CRUD operations)
+To use the deployed version of the API, the base URL is https://personapi-xc6z.onrender.com (with the routes attached for any of the CRUD operations)
