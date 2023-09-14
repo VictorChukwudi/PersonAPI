@@ -1,5 +1,10 @@
 # Person API Documentation
 
+**Base URLs**:
+
+- local: http://localhost:4000
+- deployed: https://personapi-xc6z.onrender.com
+
 ## Endpoints
 
 ### `/api`

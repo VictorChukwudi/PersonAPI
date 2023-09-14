@@ -3,6 +3,7 @@
 ## Table of Contents
 
 - [General Info](#general-info)
+- [Prerequisites](#prerequisites)
 - [Modules and Dependencies](#modules)
 - [Setup](#setup)
 - [Usage](#usage)
@@ -17,6 +18,10 @@ A simple API built with fastify, that perform basic CRUD functionalities.
 - D - Deletes a person's record from the database.
 
 The above functionalities performed using MongoDB Atlas database.
+
+## Prerequisites
+
+To run this API locally or following through the implementation, [Node.js](nodejs.org/en) runtime environment is required, most preferably, the long term support (LTS) version.
 
 ## Modules and Dependencies
 
@@ -34,13 +39,13 @@ To run this project (i.e. locally), mongodb should be available on your machine 
 - Clone the repo:
 
 ```
-$ git clone https://github.com/VictorChukwudi/hng_stage_two.git
+git clone https://github.com/VictorChukwudi/hng_stage_two.git
 ```
 
 - Open the folder and run the command to install the dependencies:
 
 ```
-$ npm install
+npm install
 ```
 
 - Create a .env file in the root and add code below to the file
@@ -52,7 +57,7 @@ dbURI= <mongodb_connection_string>
 - Next, run the command below to start the server
 
 ```
-$ npm run dev
+npm run dev
 ```
 
 ## Usage
