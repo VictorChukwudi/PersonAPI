@@ -3,8 +3,9 @@
 ## Table of Contents
 
 - [General Info](#general-info)
+- [UML Diagram](#uml-diagram)
 - [Prerequisites](#prerequisites)
-- [Modules and Dependencies](#modules)
+- [Modules and Dependencies](#modules-and-dependencies)
 - [Setup](#setup)
 - [Usage](#usage)
 
@@ -18,7 +19,8 @@ A simple API built with fastify, that perform basic CRUD functionalities.
 - D - Deletes a person's record from the database.
 
 The above functionalities performed using MongoDB Atlas database.
-
+## UML Diagram
+![Person API - Page 1(1)](https://github.com/VictorChukwudi/hng_stage_two/assets/81536363/89533098-6d9b-48e8-a93c-cb8f87448fdb)
 ## Prerequisites
 
 To run this API locally or following through the implementation, [Node.js](nodejs.org/en) runtime environment is required, most preferably, the long term support (LTS) version.
