@@ -10,6 +10,14 @@ const data = {
     name: { type: "string" },
   },
 };
+const error_msg = {
+  type: "object",
+  properties: {
+    status: { type: "string", default: "error" },
+    message: { type: "string" },
+  },
+};
+
 const createUserOpts = {
   schema: {
     body: {
@@ -21,10 +29,28 @@ const createUserOpts = {
         type: "object",
         properties: {
           status: { type: "string" },
-          msg: { type: "string" },
+          message: { type: "string" },
           data,
         },
       },
+      400: error_msg,
+    },
+  },
+};
+
+const userOpts = {
+  schema: {
+    response: {
+      200: {
+        type: "object",
+        properties: {
+          status: { type: "string" },
+          message: { type: "string" },
+          data,
+        },
+      },
+      400: error_msg,
+      404: error_msg,
     },
   },
 };
@@ -36,7 +62,7 @@ const personRoutes = (fastify, options, done) => {
       const { error, value } = personValidate.validate({ name });
       if (error) {
         reply.code(400);
-        throw new Error("Name field should be a string.");
+        throw new Error("name field should be a string.");
       } else {
         const user = await new Person({
           name,
@@ -44,7 +70,7 @@ const personRoutes = (fastify, options, done) => {
         console.log(user._id);
         reply.code(201).send({
           status: "success",
-          msg: "New person created.",
+          message: "New person created.",
           data: {
             id: user._id,
             name: user.name,
@@ -54,12 +80,12 @@ const personRoutes = (fastify, options, done) => {
     } catch (error) {
       reply.send({
         status: "error",
-        msg: error.message,
+        message: error.message,
       });
     }
   });
 
-  fastify.get("/:user_id", async (req, reply) => {
+  fastify.get("/:user_id", userOpts, async (req, reply) => {
     try {
       const { user_id } = req.params;
       if (!user_id || !mongoose.Types.ObjectId.isValid(user_id)) {
@@ -69,11 +95,11 @@ const personRoutes = (fastify, options, done) => {
         const user = await Person.findById(user_id);
         if (!user) {
           reply.code(404);
-          throw new Error("User not found.");
+          throw new Error("Person not found.");
         } else {
           reply.code(200).send({
             status: "success",
-            msg: "User found.",
+            message: "Person found.",
             data: {
               id: user._id,
               name: user.name,
@@ -84,11 +110,11 @@ const personRoutes = (fastify, options, done) => {
     } catch (error) {
       reply.send({
         status: "error",
-        msg: error.message,
+        message: error.message,
       });
     }
   });
-  fastify.put("/:user_id", async (req, reply) => {
+  fastify.put("/:user_id", userOpts, async (req, reply) => {
     try {
       const { user_id } = req.params;
       const { name } = req.body;
@@ -114,7 +140,7 @@ const personRoutes = (fastify, options, done) => {
           );
           reply.code(200).send({
             status: "success",
-            msg: "Person updated",
+            message: `Person with Id: ${updatedUser._id} has been updated.`,
             data: {
               id: updatedUser._id,
               name: updatedUser.name,
@@ -125,12 +151,12 @@ const personRoutes = (fastify, options, done) => {
     } catch (error) {
       reply.send({
         status: "error",
-        msg: error.message,
+        message: error.message,
       });
     }
   });
 
-  fastify.delete("/:user_id", async (req, reply) => {
+  fastify.delete("/:user_id", userOpts, async (req, reply) => {
     try {
       const { user_id } = req.params;
       if (!user_id || !mongoose.Types.ObjectId.isValid(user_id)) {
@@ -144,14 +170,14 @@ const personRoutes = (fastify, options, done) => {
         } else {
           reply.code(200).send({
             status: "success",
-            msg: `Person with Id: ${user._id} has been deleted`,
+            message: `Person with Id: ${user._id} has been deleted`,
           });
         }
       }
     } catch (error) {
       reply.send({
         status: "error",
-        msg: error.message,
+        message: error.message,
       });
     }
   });
