@@ -56,6 +56,21 @@ const userOpts = {
 };
 
 const personRoutes = (fastify, options, done) => {
+  fastify.get("/", async (req, reply) => {
+    try {
+      const users = await Person.find();
+      reply.code(200).send({
+        status: "success",
+        message: "All persons returned.",
+        data: users,
+      });
+    } catch (error) {
+      reply.code(500).send({
+        status: "error",
+        messaga: error.message,
+      });
+    }
+  });
   fastify.post("/", createUserOpts, async (req, reply) => {
     try {
       const { name } = req.body;
