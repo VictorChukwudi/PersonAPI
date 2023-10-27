@@ -1,5 +1,5 @@
 # Person API
-
+This is a basic CRUD API - a stage 2 task for HNG X internship.
 ## Table of Contents
 
 - [General Info](#general-info)
